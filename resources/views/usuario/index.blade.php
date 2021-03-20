@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'CRUD')
+@section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">CRUD</h1>
+    <h1 class="m-0 text-dark">Dashboard</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="mb-0">iniciaste seccion</p>
+                    <p class="mb-0">You are logged in!</p>
                 </div>
             </div>
         </div>
