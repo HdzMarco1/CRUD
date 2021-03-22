@@ -23,6 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/settings', 'UserController@index')->name('home');
 
-
-
+//Route::get('/admin/settings/{name}', 'UserController@show');
+//Route::get('/admin/settings/{id}', 'UserController@show');
 
