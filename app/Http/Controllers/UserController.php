@@ -3,47 +3,109 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
 
 class UserController extends Controller
 {
-
-    //mostrar lista de usuarios 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $users = User::all();
-
+        $users = User::all(); 
         return view('usuario.index', ['users' => $users]);
     }
 
-    //formulario de registro
-    public function crear(){
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('usuario.create');  
     }
 
-    //guardar los registros en la db
-    public function guardar() {
-        
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+     //return $request->all();
+
+        $usuario = new User();
+
+        $usuario->name = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+
+        $usuario->save();   
+
+        return redirect('/admin/settings/');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+       //
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('usuario.edit', ['user'=> User::findOrFail($id)]);
+    }
 
-    /*public function saludo(){
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $usuario = User::findOrFail($id);
 
-        return view('usuario.index', ['name' => 'marco']);
+        $usuario->name = $request->get('nombre');
+        $usuario->email = $request->get('email');
+        //$usuario->password = Hash::make($request->password);
 
-    }*/
+        $usuario->update();   
 
-    /*public function show ($name){
+        return redirect('/admin/settings/');
+    }
 
-        //$user = \DB::table('users')->where('name', $name)->first();
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $usuario = User::findOrFail($id);
 
-        $user = User::where('name', $name)->firstOrFail();
-            //dd($user);
-            return view('usuario.index', ['user' => $user]);
+        $usuario->delete();
 
-        
+        return redirect('/admin/settings/');
 
-    }*/
+    }
 }

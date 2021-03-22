@@ -21,7 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/settings', 'UserController@index')->name('home');
+Route::resource('/admin/settings', 'UserController');
+Route::patch('/admin/settings/{id}/edit/','UserController@update')->name('id.update');
+Route::delete('/admin/settings/{id}','UserController@destroy')->name('id.destroy');
 
 //Route::get('/admin/settings/{name}', 'UserController@show');
 //Route::get('/admin/settings/{id}', 'UserController@show');
