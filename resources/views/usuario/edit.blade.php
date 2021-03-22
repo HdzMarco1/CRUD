@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Editar')
 
 @section('content_header')
-    <h1>hola buenas me quiero morir</h1>
+    <h1>Editar usuario</h1>
 @stop
 
 @section('content')
@@ -21,6 +21,7 @@
                 <input type="email" class="form-control" name="email" value="{{$user->email}}">
             </div>
             <button type="submit" class="btn btn-primary">actualizar</button>
+            <a href="/admin/settings"><button type="button" class="btn btn-danger">cancelar</button></a>
             </form>
         </div>
     </div>

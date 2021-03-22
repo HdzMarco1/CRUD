@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>hola buenas me quiero morir</h1>
+    <h1>Crear un nuevo usuario</h1>
 @stop
 
 @section('content')
@@ -23,7 +23,8 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">crear</button>
+            <button type="submit" class="btn btn-primary">agregar</button>
+            <a href="/admin/settings"><button type="button" class="btn btn-danger">cancelar</button></a>
             </form>
         </div>
     </div>
