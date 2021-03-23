@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container">
-        <table class="table table-hover">
+        <table class="table table-bordered data-table">
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -21,26 +21,33 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($users as $user)
-                <tr>
-                <th scope="row">{{$user->id}}</th>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td>{{$user->password}}</td>
-                <td>
-                    <form action="{{route('id.destroy', $user->id)}}" method="POST">
-                    <a href="/admin/settings/{{$user->id}}/edit"><button type="button" class="btn btn-primary">Editar</button></a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                    
-                    </form>
-                </td>
-                </tr>
-            @endforeach
+
             </tbody>
         </table>  
     </div>
+
+    @push('scripts')
+        <script>
+            $(function(){
+                var table = $('.data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('usuario.index')}}",
+
+                    columns: [
+                        { data: 'id', name:'id'},
+                        { data: 'name', name:'name'},
+                        { data: 'email', name:'email'},
+                        { data: 'password', name:'password'},
+                        { data: 'action', name:'action', orderable: false,  searchable: false},
+
+                    ]
+                });
+
+            });
+        </script>
+
+    @endpush
 @stop
 
 

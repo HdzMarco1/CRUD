@@ -23,7 +23,7 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">agregar</button>
+            <button type="submit" class="btn btn-primary">registrar</button>
             <a href="/admin/settings"><button type="button" class="btn btn-danger">cancelar</button></a>
             </form>
         </div>
